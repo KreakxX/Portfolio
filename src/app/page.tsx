@@ -25,8 +25,11 @@ import {
   SiScikitlearn,
   SiTypescript,
   SiPython,
+  SiRust,
+  SiMysql,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
+import DottedBackground from "@/components/dotted";
 
 const frameworks = [
   { name: "React.js", icon: SiReact, color: "#61DAFB" },
@@ -44,6 +47,11 @@ const frameworks = [
   { name: "Expo", icon: SiExpo, color: "#000020" },
   { name: "React-Native", icon: SiReact, color: "#61DAFB" },
   { name: "scikit-learn", icon: SiScikitlearn, color: "#F7931E" },
+  { name: "Java", icon: FaJava, color: "#ED8B00" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "Rust", icon: SiRust, color: "#020202ff" },
+  { name: "MySQL", icon: SiMysql, color: "#0f4470ff" },
 ];
 
 const languages = [
@@ -54,7 +62,7 @@ const languages = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <DottedBackground>
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
@@ -69,10 +77,10 @@ export default function Home() {
             </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Full Stack Developer
+            KreakxX
           </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Building mobile Apps, Websites, building ML projects and APIs
+          <p className="text-2xl font-bold text-gray-300 mb-8 max-w-2xl mx-auto text-violet-500">
+            Full Stack Developer | Mobile Dev | API engineer
           </p>
         </div>
       </section>
@@ -169,14 +177,14 @@ export default function Home() {
                 title: "Quick IO",
                 description:
                   "A Fullstack AI Code Reviewer built for my Teacher.",
-                tech: ["React", "FastAPI", "MySQL"],
+                tech: ["React.js", "FastAPI", "MySQL"],
                 image: "/QuickIO.png",
               },
               {
                 title: "Job Scrapper",
                 description:
                   "A Webscrapper, that scrappes Jobs from Indeed, LinkedIn, Stepstone(other version)",
-                tech: ["React", "FastAPI", "Selenium"],
+                tech: ["React.js", "FastAPI", "Selenium"],
                 image: "/JobScrapper.png",
               },
               {
@@ -190,7 +198,7 @@ export default function Home() {
                 title: "AI Agents",
                 description:
                   "A Tauri desktop app, for managing and using local LLMs",
-                tech: ["Rust", "React"],
+                tech: ["Rust", "React.js"],
                 image: "/AIAgents.jpeg",
               },
               {
@@ -203,13 +211,13 @@ export default function Home() {
                 title: "Lidl Shop",
                 description:
                   "A Lidl Shopping Checkout/delivery Portal for my School",
-                tech: ["Spring", "React", "MySQL"],
+                tech: ["Spring", "React.js", "MySQL"],
                 image: "/Lidl.png",
               },
               {
                 title: "Quick Bitly",
                 description: "A Url Shortener like Bitly but quick",
-                tech: ["NextJS", "MySQL"],
+                tech: ["Next.js", "MySQL"],
                 image: "/QuickBitly.png",
               },
             ].map((project, index) => (
@@ -236,15 +244,27 @@ export default function Home() {
                     {project.description}
                   </CardDescription>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="text-xs border-gray-600 text-gray-300"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
+                    {project.tech.map((tech) => {
+                      const fw = frameworks.find((fw) => fw.name === tech);
+                      const Icon = fw?.icon;
+
+                      return (
+                        <div key={tech} className="flex items-center space-x-2">
+                          <Badge
+                            variant="outline"
+                            className="text-xs border-gray-600 text-gray-300"
+                          >
+                            {tech}
+                          </Badge>
+                          {Icon && (
+                            <Icon
+                              className="w-4 h-4"
+                              style={{ color: fw.color }}
+                            />
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>
@@ -261,6 +281,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </div>
+    </DottedBackground>
   );
 }
