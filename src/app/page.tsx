@@ -206,6 +206,12 @@ export default function Home() {
                 tech: ["Spring", "React", "MySQL"],
                 image: "/Lidl.png",
               },
+              {
+                title: "Quick Bitly",
+                description: "A Url Shortener like Bitly but quick",
+                tech: ["NextJS", "MySQL"],
+                image: "/QuickBitly.png",
+              },
             ].map((project, index) => (
               <Card
                 key={index}
